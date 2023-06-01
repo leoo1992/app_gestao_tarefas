@@ -6,6 +6,11 @@ const mysql = require("mysql2"); //MYSQL (USANDO O MYSQL2)
 // CONFIG EXPRESS P/ ACEITAR JSON
 app.use(express.json());
 
+// CORREÇÃO DE BUGS
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 //CONEXÃO BANCO MYSQL
 var connection = mysql.createConnection({
   host: "localhost",
@@ -120,5 +125,3 @@ app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
 
-// ENCERRANDO CONEXÃO
-// connection.end();
