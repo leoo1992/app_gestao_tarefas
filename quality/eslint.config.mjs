@@ -1,0 +1,1 @@
+export default [{files:['quality/**/*.mjs','tests/**/*.mjs'],languageOptions:{ecmaVersion:'latest',sourceType:'module',globals:{console:'readonly'}},rules:{'no-undef':'error','no-unused-vars':'error'}}];

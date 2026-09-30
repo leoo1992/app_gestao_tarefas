@@ -1,0 +1,1 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{qualityPercent,safePath}from'../quality/core.mjs';test('score',()=>{assert.equal(qualityPercent(20,20),100);assert.equal(qualityPercent(0,0),0)});test('path',()=>{assert.equal(safePath('src/index.js'),true);assert.equal(safePath('.env'),false)});
