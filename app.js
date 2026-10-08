@@ -13,11 +13,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //CONEXÃO BANCO MYSQL
-var connection = mysql.createConnection({
-  host: "localhost", //<-          não esta criptogrado
-  user: "root", //<-               não esta criptogrado
-  password: "root", //<-           não esta criptogrado
-  database: "gestao_tarefas", //<- não esta criptogrado
+const requiredEnv = (key) => {
+  const value = process.env[key];
+  if (!value) throw new Error(`Configure a variável de ambiente ${key} antes de iniciar.`);
+  return value;
+};
+
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST || "localhost",
+  user: requiredEnv("DB_USER"),
+  password: requiredEnv("DB_PASSWORD"),
+  database: process.env.DB_NAME || "gestao_tarefas",
 });
 
 // VERIFICAÇÃO DE CONECTADO
