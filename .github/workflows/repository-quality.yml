@@ -16,6 +16,8 @@ jobs:
         run: npx --yes eslint@9.35.0 quality tests --config quality/eslint.config.mjs
       - name: Tests + coverage 80%
         run: node --test --experimental-test-coverage --test-coverage-lines=80 tests/repository-quality.test.mjs
+      - name: Application unit tests
+        run: node --test tests/db-config.test.js
       - name: Build quality manifest
         run: node quality/build.mjs
       - name: Docker build
