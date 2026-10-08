@@ -13,18 +13,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //CONEXÃO BANCO MYSQL
-const requiredEnv = (key) => {
-  const value = process.env[key];
-  if (!value) throw new Error(`Configure a variável de ambiente ${key} antes de iniciar.`);
-  return value;
-};
-
-const connection = mysql.createConnection({
-  host: process.env.DB_HOST || "localhost",
-  user: requiredEnv("DB_USER"),
-  password: requiredEnv("DB_PASSWORD"),
-  database: process.env.DB_NAME || "gestao_tarefas",
-});
+const { readDatabaseConfig } = require('./db-config');
+const connection = mysql.createConnection(readDatabaseConfig());
 
 // VERIFICAÇÃO DE CONECTADO
 connection.connect(function (err) {
