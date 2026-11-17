@@ -1,1 +1,0 @@
-import{mkdir,readdir,writeFile}from'node:fs/promises';const files=(await readdir('.')).sort();await mkdir('quality-dist',{recursive:true});await writeFile('quality-dist/manifest.json',JSON.stringify({files},null,2));console.log('build ok');

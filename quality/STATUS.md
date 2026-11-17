@@ -1,3 +1,0 @@
-# Quality
-
-Baseline em preparação.
